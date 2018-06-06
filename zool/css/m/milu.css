@@ -1,0 +1,194 @@
+@charset "utf-8";
+/* CSS Document */
+#milupage{
+	font-size:20px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+#miluup{
+    width: 100%;
+    height: 10%;
+    position: relative;
+    background-color: #c7ad88;
+}
+#milumain{
+    width: 100%;
+    height: 80%;
+    position: relative;
+	background-color: #ede9ce;
+}
+#milubottom{
+    width: 100%;
+    height: 10%;
+    position: relative;
+    background-color: #c7ad88;
+}
+#milupage #miluleft{
+    width: 35%;
+    height: 100%;
+    position: absolute;
+}
+#milupicture{
+	width: 90%;
+    height: 90%;
+	position:absolute;
+	left: 15%;
+	top:10%;
+	background: url(../../img/milu/2.GIF) no-repeat;
+	/* Firefox, Safari(WebKit), Opera */
+	filter: alpha(opacity =                             95);
+	background: url(../../img/milu/2.GIF) no-repeat;
+	opacity: 0.2;
+	/* Firefox, Safari(WebKit), Opera */
+	filter: alpha(opacity =                             95);
+	background: url(../../img/milu/2.GIF) no-repeat;
+	opacity: 0.2; /* Firefox, Safari(WebKit), Opera */
+	filter: alpha(opacity =                             95);
+	/* IE 4-7 */; 
+	
+}
+ #thumb {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	background-image: url(../../img/milu/2.GIF);
+	background-repeat: no-repeat;
+	background-position:8% 62%;
+	background-attachment: fixed;
+	/* Do rounding (native in Safari, Firefox and Chrome) */
+	-webkit-border-radius: 200px;
+	-moz-border-radius: 200px;
+}
+
+#milupage #milucenter{
+    width: 30%;
+    height: 100%;
+    position: absolute;
+	left: 35%;
+}
+#milupage #milutitle1{
+    width: 15%;
+    height: 15%;
+    position: absolute;
+    left:25%;
+	top:15%;
+}
+#milupage #milutitle2{
+    width: 15%;
+    height: 15%;
+    position: absolute;
+    left: 55%;
+	top:15%;
+}
+/*定义麋鹿div的各个旋转角度*/
+@keyframes milu{
+	0%, 10%{
+		transform: none;
+		animation-timing-function: cubic-bezier(.57, -0.5, .43, 1.53);
+	}
+	26%, 30%{
+		transform: rotateZ(-40deg);
+	}
+	32.5%{
+    	transform: rotateZ(-38deg);
+	}
+	35%{
+    	transform: rotateZ(-42deg);
+	}
+	37.5%{
+    	transform: rotateZ(-38deg);
+  	}
+  	40%{
+    	transform: rotateZ(-40deg);
+  	}
+	42.5%{
+    	transform: rotateZ(-38deg);
+  	}
+  	45%{
+    	transform: rotateZ(-42deg);
+  	}
+  	47.5%{
+    	transform: rotateZ(-38deg);
+    	animation-timing-function: cubic-bezier(.57,-0.5,.43,1.53);
+  	}
+  	58%, 100%{
+    	transform: none;
+  	}
+}
+@keyframes miluBox{
+  	0%, 20%{
+    	filter: none;
+  	}
+  	40%, 50%{
+    	filter: blur(5px);
+  	}
+  	65%, 100%{
+    	filter: none;
+  	}
+}
+
+/*css定义*/
+ .shape{
+	border: 1em solid #fff;
+	width: 4em;
+	height: 4em;
+	position: absolute;
+	top: calc(60% - 2em);
+	left: calc(35% - 2em);
+}
+
+/*定义麋鹿的div*/
+.shape.miluBox{
+	width: 150px;
+	height: 150px;
+	background-size: cover;
+  	animation: milu 5s infinite ease-out;
+  	transform-origin: 0 6em;
+}
+
+#milupage #right{
+    width: 35%;
+    height: 100%;
+    position: relative;
+    left: 65%;
+    top: 0;
+}
+#milupage #contentfirst{
+	text-align: left;
+	width: 10%;
+    height: 10%;
+	position:absolute;
+	left: 65%;
+	top:15%;
+	
+}
+#milupage #contentsecond{
+	text-align: left;
+	width: 10%;
+    height: 10%;
+	position:absolute;
+	left: 65%;
+	top:35%;
+	
+}
+#milupage #contentthird{
+	text-align: left;
+	width: 10%;
+    height: 10%;
+	position:absolute;
+	left: 65%;
+	top:55%;
+	
+}
+#milupage #contentforth{
+	text-align: left;
+	width: 10%;
+    height: 10%;
+	position:absolute;
+	left: 65%;
+	top:77%;
+	
+}
+

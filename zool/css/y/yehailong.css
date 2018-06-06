@@ -1,0 +1,94 @@
+.large-header {
+	position: absolute;
+	top:0%;
+	left:0%;
+	width: 100%;
+	height:80%;
+	background: #333;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center center;
+	z-index: 1;
+	background:url(img/yehailong/sea2.jpg);
+	background-repeat:no-repeat;
+	-moz-background-size:cover;
+	background-size:100% 100%;
+}
+#introduction{
+	position:absolute;
+	height:40%;
+	width:50%;
+	border-radius:10%;
+	top:30%;
+	left:25%;
+	background:white;
+	z-index: 2;
+	filter:alpha(opacity=50);
+	opacity:0.5;
+	text-align: center;
+	font-family:'zooHeadline';
+}
+.text{
+	text-align: left;
+	font-size: 24px;
+	color:Maroon;
+	visibility:hidden;
+}
+#top1{
+	position: absolute;
+	top:0%;
+	left:0%;
+	height:10%;
+	width:100%;
+	z-index:2;
+	background-color:CadetBlue;
+}
+#buttom1{
+	position: absolute;
+	top:90%;
+	left:0%;
+	height:10%;
+	width:100%;
+	z-index:2;
+}
+#pattern{
+	position: absolute;
+	top:10%;
+	left:0%;
+	height:90%;
+	width:100%;
+	z-index:3;
+	background: url(../../img/yehailong/%E8%B4%9D%E5%A3%B32.png);
+}
+#yehailong1{
+	position: absolute;
+	height:20%;
+	width:20%;
+	top:8%;
+	left:10%;
+	z-index:2;
+}
+#yehailong2{
+	position: absolute;
+	height:20%;
+	width:20%;
+	top:8%;
+	left:75%;
+	z-index:2;
+}
+#yehailong3{
+	position: absolute;
+	height:20%;
+	width:20%;
+	top:55%;
+	left:10%;
+	z-index:2;
+}
+#yehailong4{
+	position:absolute;
+	height:20%;
+	width:20%;
+	top:55%;
+	left:75%;
+	z-index:2;
+}
