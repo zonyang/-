@@ -1,0 +1,69 @@
+/*布局有关样式*/
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	margin: 1em 10%;
+	background-image: url(../images/back.jpg);
+	max-width: 80em;
+}
+header {
+	background-image: url(../images/323129.jpg);
+	/*background-repeat: no-repeat;*/
+	background-position: bottom right;
+	border: .1em solid;
+	border-bottom-width: 0;
+}
+header nav {
+	/*background-image: url(../images/cocktail.gif);*/
+	/*background-repeat: repeat-x;*/
+	/*background-position: bottom right;*/
+	/*border: .1em solid;*/
+	border-top-width: 0;
+	padding-left: 10%;
+}
+header nav ul {
+	overflow: hidden;
+	border-left: solid .1em;
+}
+header nav li {
+	display: inline;
+}
+header nav li a {
+	display: block;
+	float: left;
+	padding: .5em .2em;
+	border-right: .1em solid;
+}
+article {
+	border: .1em solid;
+	border-top-width: 0;
+	padding: 2em 10%;
+	line-height: 1.8em;
+}
+article img {
+	border: .1em solid;
+	outline: .1em solid;
+}
+#slideshow {
+	position: relative;
+	overflow: hidden;
+	width: 860px;
+	height: 634px;
+}
+#preview {
+	position: absolute;
+}
+td {
+	padding: .5em 3em;
+}
+dt, dd {
+	float: left;
+}
+label {
+	display: block;
+}
+fieldset {
+	border: 0;
+}
