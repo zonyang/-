@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 1000px;
+            height: 550px;
+            border: 1px solid black;
+            margin: 0 auto;
+        }
+
+        #ground {
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+
+        #control {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        #brand {
+            float: left;
+        }
+
+        #buttons {
+            float: right;
+        }
+
+        #ground .block {
+            background-color: darkorange;
+            width: 20px;
+            height: 20px;
+            float: left;
+        }
+
+        #ground .snake {
+            background-color: red;
+            position: absolute;
+        }
+
+        #ground .food {
+            background-color: blue;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="ground"></div>
+    <div id="control">
+        <div id="brand">
+            <span>软绵绵的贪吃蛇</span>
+        </div>
+        <div id="buttons">
+            <button id="start">开始</button>
+            <button id="pause">暂停</button>
+        </div>
+    </div>
+</div>
+<script>
+(function () {
+    var snakes = [];
+    var die = true;
+    //初始化草场
+    const ground = document.getElementById("ground");
+    for (let i = 0; i < 50 * 25; i++) {
+        let block = document.createElement("div");
+        block.className = "block";
+        ground.appendChild(block);
+    }
+
+    //创建蛇
+    function createSnake() {
+        for (let i = 0; i < 3; i++) {
+            let snake = document.createElement("div");
+            snake.className = "block snake";
+            snake.style.top = "60px";
+            snake.style.left = (60 - i * 20) + "px";
+            ground.appendChild(snake);
+            snakes.push(snake);
+        }
+    }
+
+    createSnake();
+    //创建食物
+    var food;
+
+    function createFood() {
+        var foodLeft;
+        var foodTop;
+        var flag;
+        do {
+            flag = false;
+            foodLeft = parseInt(Math.random() * 50) * 20;
+            foodTop = parseInt(Math.random() * 25) * 20;
+            for (let length = snakes.length, i = 0; i < length; i++) {
+                if (snakes[i].offsetLeft === foodLeft && snakes[i].offsetTop === foodTop) {
+                    flag = true;
+                }
+            }
+        } while (flag);
+        food = document.createElement("div");
+        food.className = "block food";
+        food.style.top = foodTop + "px";
+        food.style.left = foodLeft + "px";
+        ground.appendChild(food);
+    }
+
+    createFood();
+    //蛇移动
+    var direction = "right";
+    var next;
+    var snakeTail;
+    var snakeHead;
+
+    function move() {
+        snakeHead = snakes[0];
+        switch (direction) {
+            case "right":
+                next = {
+                    top: snakeHead.offsetTop,
+                    left: snakeHead.offsetLeft + 20
+                };
+                break;
+            case "left":
+                next = {
+                    top: snakeHead.offsetTop,
+                    left: snakeHead.offsetLeft - 20
+                };
+                break;
+            case "top":
+                next = {
+                    top: snakeHead.offsetTop - 20,
+                    left: snakeHead.offsetLeft
+                };
+                break;
+            case "bottom":
+                next = {
+                    top: snakeHead.offsetTop + 20,
+                    left: snakeHead.offsetLeft
+                };
+                break;
+        }
+        //蛇吃食物，增长身体
+        if (food.offsetLeft === next.left && food.offsetTop === next.top) {
+            food.className = "block snake";
+            snakes.unshift(food);
+            createFood();
+        } else {
+            snakeTail = snakes.pop();
+            snakeTail.style.top = next.top + "px";
+            snakeTail.style.left = next.left + "px";
+            snakes.unshift(snakeTail);
+        }
+        snakeHead = snakes[0];
+        //蛇死亡：撞墙，撞自己
+        for (let i = 4, length = snakes.length; i < length; i++) {
+            if (snakes[i].offsetTop === snakeHead.offsetTop && snakes[i].offsetLeft === snakeHead.offsetLeft) {
+                clearInterval(timer);
+                die = true;
+                alert("Game Over");
+            }
+        }
+        if (snakeHead.offsetLeft < 0 || snakeHead.offsetLeft > 1000 - 20 ||
+            snakeHead.offsetTop < 0 || snakeHead.offsetTop > 500 - 20) {
+            clearInterval(timer);
+            die = true;
+            alert("Game Over");
+        }
+
+    }
+
+    var timer = setInterval(move, 200);
+    //键盘控制蛇移动
+    document.onkeydown = function (e) {
+        setTimeout(function () {
+            e = e || window.event;
+            var kc = e.keyCode || e.which;
+            switch (kc) {
+                case 37:
+                    if (direction !== "right")
+                        direction = "left";
+                    break;
+                case 38:
+                    if (direction !== "bottom")
+                        direction = "top";
+                    break;
+                case 39:
+                    if (direction !== "left")
+                        direction = "right";
+                    break;
+                case 40:
+                    if (direction !== "top")
+                        direction = "bottom";
+                    break;
+            }
+        }, 200);
+        //暂停 开始
+        const start = document.getElementById("start");
+        const pause = document.getElementById("pause");
+        pause.onclick = function () {
+            clearInterval(timer);
+            die = false;
+        };
+        start.onclick = function () {
+            if (!die) {
+                clearInterval(timer);
+                timer = setInterval(move, 200);
+            } else {
+                clearInterval(timer);
+                while (snakes[0]) {
+                    ground.removeChild(snakes[0]);
+                    snakes.shift(snakes[0]);
+                }
+                ground.removeChild(food);
+                createSnake();
+                createFood();
+                direction = "right";
+                timer = setInterval(move, 200);
+            }
+        }
+    }
+})();
+
+
+</script>
+</body>
+</html>
