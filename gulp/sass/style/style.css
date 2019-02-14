@@ -1,0 +1,17 @@
+body {
+  background: green;
+}
+body div {
+  color: green;
+}
+body div:hover {
+  color: green;
+}
+body #triangle {
+  height: 0;
+  width: 0;
+  border: 50px solid;
+  border-color: transparent transparent transparent red;
+}
+
+/*# sourceMappingURL=style.css.map */

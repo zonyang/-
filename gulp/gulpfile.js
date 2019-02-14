@@ -26,7 +26,8 @@ gulp.task('watch', function () {
         }
     );
     watch('sass/style.scss',function () {
-            return gulp.src('sass/style.scss').pipe(sass()).pipe(gulp.dest('dist/css')).pipe(connect.reload());
+            return gulp.src('sass/style.scss').pipe(sass())
+	            .pipe(gulp.dest('dist/css')).pipe(connect.reload());
         }
     )
 });
@@ -34,4 +35,10 @@ gulp.task('all',gulp.parallel('server','watch'));
 gulp.task('concat',function() {
     return gulp.src(['1.js','2.js']).pipe(concat('main.js')).pipe(gulp.dest('dist')).pipe(uglify())
         .pipe(rename('main.min.js')).pipe(gulp.dest('dist'));
+});
+gulp.task("sass",()=> {
+   watch("sass/style.scss",()=>{
+       gulp.src("sass/style.scss").pipe(sass())
+           .pipe(gulp.dest("sass/style.css"));
+   })
 });

@@ -1,4 +1,29 @@
-$bg: blue;
+$bg: background;
+$color: green;
 body {
-  background: $bg;
+  #{$bg}: $color;
+  div {
+    color: $color;
+    &:hover {
+      color: green;
+    }
+  }
+  @mixin triangle($color, $dir) {
+    height: 0;
+    width: 0;
+    border: 50px solid;
+    @if ($dir == right) {
+      border-color: transparent transparent transparent $color;
+    } @else if ($dir == left) {
+      border-color: transparent $color transparent transparent;
+    } @else if ($dir == top) {
+      border-color: transparent transparent $color transparent;
+    } @else if ($dir == bottom) {
+      border-color: $color transparent transparent transparent;
+    }
+
+  }
+  #triangle {
+    @include triangle(red, right);
+  }
 }
