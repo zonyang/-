@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <span>中奖号码：</span><span id="num"></span>
+</div>
+<button id="produce">生成</button>
+<script>
+    (function () {
+        const num = document.getElementById("num");
+        const pro = document.getElementById("produce");
+
+        pro.onclick = function () {
+            // let arr1 = generateNum(5);
+            // num.innerHTML = generateNum(5);
+            // window.location.hash = generateNum(5);
+            // window.onhashchange = function () {
+            //     num.innerHTML = window.location.hash.substring(1);
+            // };
+
+            history.pushState(generateNum(5),"",location.href);
+            window.onpopstate = function () {
+                num.innerHTML = event.state;
+            };
+            num.innerHTML = generateNum(5);
+        };
+
+
+        function generateNum(max) {
+            let arr = [];
+            for (let i = 0; i < max; i++) {
+                arr.push(parseInt(Math.random() * 34 + 1));
+            }
+            return arr;
+        }
+    })()
+</script>
+</body>
+</html>

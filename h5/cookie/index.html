@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="./index.html" id="form1">
+    <label for="user">Name: </label><input id="user" type="text"><br>
+    <label for="pwd">Password: </label><input id="pwd" type="text"><br>
+    Remember?<input id="rem" type="checkbox"><input type="submit" id="submit">
+</form>
+<script>
+    (function () {
+        const form1 = document.getElementById("form1");
+        // const submit = document.getElementById("submit");
+        const rem = document.getElementById("rem");
+        const name = document.getElementById("user");
+        const pwd = document.getElementById("pwd");
+        // console.log(getCookie("name"));
+        const username = getCookie("name");
+        const password = getCookie("pwd");
+        if (username && password) {
+            name.value = username;
+            pwd.value = password;
+            form1.submit();
+        }
+        // removeCookie('name');
+        form1.onsubmit = function () {
+            if (rem.checked) {
+                // console.log(name.value);
+                setCookie("name", name.value);
+                setCookie("pwd", pwd.value);
+            }
+        };
+
+        function setCookie(key, value, day) {
+            let str = key + "=" + value + ";";
+            if (day) {
+                let now = new Date();
+                now.setDate(now.getDate() + day);
+                str += "expires=" + now;
+            }
+            document.cookie = str;
+        }
+
+        function getCookie(key) {
+            let arr = document.cookie.split(";");
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].trim().split("=")[0] === key) {
+                    return arr[i].trim().split("=")[1];
+                }
+            }
+        }
+
+        function removeCookie(key) {
+            setCookie(key, '', -1)
+        }
+    })();
+
+</script>
+</body>
+</html>
