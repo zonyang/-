@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="firstName">+<input type="text" v-model="lastName">={{fullName}}
+</div>
+<div id="app2">
+    <span v-bind:title="message" v-if="see">here</span>
+    <ul>
+        <li v-for="list in todo">{{list.text}}</li>
+    </ul>
+    {{arr}}
+    <button v-on:click="reverse">逆转</button>
+</div>
+<div id="app3">
+    <todo-item v-for="item in fruits" v-bind:key="item.id" v-bind:title="item.name" v-bind:data="item">
+
+    </todo-item>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--<script src="https://unpkg.com/vue"></script>-->
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            firstName: "li",
+            lastName: "si",
+        },
+        computed: {
+            fullName: function () {
+                return this.firstName + this.lastName;
+            }
+        }
+    });
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            arr: "hello li yang",
+            see: "true",
+            message: '页面加载于 ' + new Date().toLocaleString(),
+            todo: [
+                {text: "write"},
+                {text: "sing"},
+                {text: "dance"}
+            ]
+        },
+        methods: {
+            reverse: function () {
+                this.arr = this.arr.split(" ").reverse().join(" ");
+            }
+        }
+    });
+    // Vue.component('todo-item', {
+    //     props: ['data'],
+    //     template: '<li>{{ data.name }}</li>'
+    // });
+    Vue.component('todo-item', {
+        props: ['data'],
+        template: '<li>{{data.name}}</li>'
+    });
+    var app3 = new Vue({
+        el: "#app3",
+        data: {
+            fruits: [{id: 1, name: "apple"}, {id: 2, name: "orange"}, {id: 3, name: "banana"}]
+        }
+    });
+
+</script>
+</body>
+</html>
